@@ -1,1 +1,9 @@
-
+torch
+opencv-python
+pyserial
+torchvision
+pandas
+tqdm
+scipy
+filterpy
+lap
