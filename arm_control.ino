@@ -16,15 +16,20 @@ void loop() {
   if (Serial.available()) {
     String command = Serial.readStringUntil('\n');
 
-    if (command == "LEFT") {
-      baseServo.write(45);  // Rotate base left
-    } else if (command == "RIGHT") {
-      baseServo.write(135); // Rotate base right
-    } else if (command == "GRAB") {
-      gripperServo.write(45);  // Close gripper
+    if (command == "SORT_1") {
+      baseServo.write(45);  // Move base to position for sorting Category 1
+      delay(1000);           // Wait for arm movement
+      gripperServo.write(45);  // Grab object
       delay(1000);
-      gripperServo.write(0);   // Open gripper again (reset)
+      gripperServo.write(0);   // Release object
+      baseServo.write(90);  // Reset base position
+    } else if (command == "SORT_2") {
+      baseServo.write(135); // Move base to position for sorting Category 2
+      delay(1000);
+      gripperServo.write(45);  // Grab object
+      delay(1000);
+      gripperServo.write(0);   // Release object
+      baseServo.write(90);  // Reset base position
     }
   }
 }
-
